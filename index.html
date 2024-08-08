@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript 학습</title>
+</head>
+
+<body>
+  <p id="hello">안녕</p>
+  <button id="btn">버튼</button>
+  <script>
+    /*
+    document.getElementById('hello').innerHTML = 'ㅋㅋ'; // HTML 요소 내용을 수정
+
+    document.getElementById('btn').addEventListener('click', function () {
+      alert('클릭함 ㅋㅋ');
+    }); // HTML 요소 클릭 이벤트
+
+    var name = 'kim';
+    const age = 20;
+    let address = 'seoul';
+
+    // age = age + 20; 오류
+
+    var names = ['kim', 'son', 'park']; // List
+    console.log(names[2]);
+
+    var family = { name: 'kim', age: 20 }; // key:value
+    console.log(family?.name);
+    console.log(family['name']);
+
+    if (name == 'kim') {
+      console.log('kim');
+    } else {
+      console.log('no kim');
+    }
+
+    for (let i = 0; i < 5; i++) {
+      console.log(i + '번 째 출력 ㅋㅋ');
+    }
+
+    [1, 2, 3, 4].forEach((data) => {
+      console.log(data);
+    })
+
+    // this 키워드는 사용법에 따라 3~4개의 용도를 가진다.
+
+    'use strict'; // strict 모드 시작
+
+    console.log(this);
+    fn();
+    function fn() {
+      console.log(this);
+    }
+    
+
+    let 오브젝트 = {
+      data: 'kim',
+      func: function () {
+        console.log(this);
+      }
+    };
+    // object 내 함수(메서드)에서 this 를 호출하면 object 정보가 담긴다.
+
+    let 오브젝트2 = {
+      data: 'kim',
+      func: () => {
+        console.log(this);
+      }
+    };
+    // 함수가 아닌 애로우함수(=>)를 사용하면 Window 가 출력
+    오브젝트2.func();
+    
+
+    // 3. constructor 생성
+    let temp = {};
+
+    function func() {
+      this.이름 = 'kim';
+    }
+    // 함수내부에서 this를 사용하면 새로 생성되는 오브젝트(instance)를 뜻함.
+
+    let obj = new func();
+    console.log(obj);
+
+    // 4. 이벤트 리스터(e.currentTarget 과 똑같은 방법)
+    document.getElementById('btn').addEventListener('click', function (e) {
+      /*
+      console.log(this);
+      console.log(e.currentTarget); // 현재 이벤트가 동작하는 곳
+      
+            let arr = [1, 2, 3];
+            arr.forEach(function (a) { // forEach() 함수 안에 함수가 들어가있는 것을 콜백함수라고 한다.
+              console.log(this); // 콜백함수는 전역함수이기 때문에 Window 출력
+            })
+              
+      
+            let obj2 = {
+              names: ['kim', 'lee', 'park'],
+              funcs: function () {
+                obj2.names.forEach(function () {
+                  console.log(this);
+                });
+              }
+            }
+              
+      
+      let obj2 = {
+        names: ['kim', 'lee', 'park'],
+        funcs: () => {
+          //console.log(this)
+          obj2.names.forEach(() => {
+            console.log(this);
+          });
+        }
+      }
+      obj2.funcs();
+    })
+    
+    // Arrow Function
+    let func = (a) => {
+      return a + 10;
+    }
+    
+
+    // 파라미터가 1개면 괄호 생략
+    let func = a => {
+      return a + 10;
+    }
+    
+    // 명령어가 1줄이면 중괄호, return ㅏ생략가능
+    let func = a => a + 10;
+    console.log(func(5));
+    
+    // 일반 콜백함수
+    [1, 2, 3, 4].forEach(function (a) {
+      console.log(a);
+    });
+    
+    // Arrow Fuction
+    [1, 2, 3, 4].forEach(a => console.log(a));
+    
+    document.getElementById('btn').addEventListener('click', (e) => {
+      // console.log(this);
+      // 오브젝트 내부 함수에서 콜백함수를 Arrow 문법을 사용하면 e.currentTarget 처럼 나오지만
+      // 여기서는 this를 사용하면 window 출력
+      console.log(e.currentTarget);
+    })
+    
+    let obj = {
+      func: () => {
+        console.log(this); // 바깥의 this 를 상속받아 사용(현재는 window)
+      }
+    }
+    obj.func();
+   
+
+    // Test 1
+    let person = {
+      name: "sonny",
+      sayHi: function () {
+        console.log('안녕 나는 ' + this.name);
+      }
+    }
+    person.sayHi();
+
+    // Test 2
+    let datas = {
+      data: [1, 2, 3, 4, 5]
+    };
+
+    datas.total = function () {
+      let total = 0;
+      this.data.forEach(d => total += d);
+      console.log(total);
+    }
+
+    datas.total();
+
+    // Test 3
+
+    document.getElementById('btn').addEventListener('click', function () {
+      setTimeout(() => { console.log(this.innerHTML) }, 1000);
+    });
+    */
+  </script>
+</body>
+
+</html>
