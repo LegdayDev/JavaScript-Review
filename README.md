@@ -7,4 +7,6 @@
 > 4. Arrow function
 
 ### [DAY 02](/md/day02.md)
-> 
+> 1. 변수 신문법
+> 2. 문자열 문법
+> 3. Spread Operator
