@@ -10,183 +10,146 @@
 </head>
 
 <body>
-  <p id="hello">안녕</p>
-  <button id="btn">버튼</button>
   <script>
     /*
-    document.getElementById('hello').innerHTML = 'ㅋㅋ'; // HTML 요소 내용을 수정
+    // 1. 변수 신문법 : var , let , const
+    var 이름 = 'Cristiano';
+    console.log(이름);
 
-    document.getElementById('btn').addEventListener('click', function () {
-      alert('클릭함 ㅋㅋ');
-    }); // HTML 요소 클릭 이벤트
+    // ES6 부터 let , const 가 생김.
+    // 변수는 선언 , 할당 , 범위를 알면 된다.
+    // var : 재선언 O , 재할당 O , 범위 function
+    // let : 재선언 X , 재할당 O , 범위 코드블럭({})
+    // const : 재선언 X , 재할당 X , 범위 코드블럭({}) -> (const 오브젝트 내부에 값은 변경 가능!)
 
-    var name = 'kim';
-    const age = 20;
-    let address = 'seoul';
-
-    // age = age + 20; 오류
-
-    var names = ['kim', 'son', 'park']; // List
-    console.log(names[2]);
-
-    var family = { name: 'kim', age: 20 }; // key:value
-    console.log(family?.name);
-    console.log(family['name']);
-
-    if (name == 'kim') {
-      console.log('kim');
-    } else {
-      console.log('no kim');
+    const 사람 = {
+      이름: 'kim'
     }
 
-    for (let i = 0; i < 5; i++) {
-      console.log(i + '번 째 출력 ㅋㅋ');
-    }
+    Object.freeze(사람);
+    사람.이름 = 'son';
 
-    [1, 2, 3, 4].forEach((data) => {
-      console.log(data);
-    })
-
-    // this 키워드는 사용법에 따라 3~4개의 용도를 가진다.
-
-    'use strict'; // strict 모드 시작
-
-    console.log(this);
-    fn();
-    function fn() {
-      console.log(this);
-    }
+    console.log(사람.이름); // 에러는 안나지만 바뀌지는 않는다.(strict 모드는 에러)
     
 
-    let 오브젝트 = {
-      data: 'kim',
-      func: function () {
-        console.log(this);
-      }
-    };
-    // object 내 함수(메서드)에서 this 를 호출하면 object 정보가 담긴다.
+    // 2. 변수 신문법 : Hoisting, 전역변수, 참조
+    // Hoisting : 변수나 함수를 선언 시 선언부분을 변수의 범위 맨 위로 끌고가서 해석을 한다.
+    // console.log(age); // undefined : 선언은 되었지만 할당은 안됨.:
 
-    let 오브젝트2 = {
-      data: 'kim',
-      func: () => {
-        console.log(this);
-      }
-    };
-    // 함수가 아닌 애로우함수(=>)를 사용하면 Window 가 출력
-    오브젝트2.func();
-    
+    var age = 30;
 
-    // 3. constructor 생성
-    let temp = {};
+    console.log(age);
 
+    let name = 'son', 성별 = 'male';
+
+    전역변수 : 모든 고셍서 쓸 수 있는 변수
+    var age = 30; // 제일 바깥에 쓰면 전역변수
     function func() {
-      this.이름 = 'kim';
+      console.log(age);
     }
-    // 함수내부에서 this를 사용하면 새로 생성되는 오브젝트(instance)를 뜻함.
+    func();
 
-    let obj = new func();
-    console.log(obj);
+    window.name = 'CR7'; // window 를 이용하여 전역변수 선언
 
-    // 4. 이벤트 리스터(e.currentTarget 과 똑같은 방법)
-    document.getElementById('btn').addEventListener('click', function (e) {
-      /*
-      console.log(this);
-      console.log(e.currentTarget); // 현재 이벤트가 동작하는 곳
-      
-            let arr = [1, 2, 3];
-            arr.forEach(function (a) { // forEach() 함수 안에 함수가 들어가있는 것을 콜백함수라고 한다.
-              console.log(this); // 콜백함수는 전역함수이기 때문에 Window 출력
-            })
-              
-      
-            let obj2 = {
-              names: ['kim', 'lee', 'park'],
-              funcs: function () {
-                obj2.names.forEach(function () {
-                  console.log(this);
-                });
-              }
-            }
-              
-      
-      let obj2 = {
-        names: ['kim', 'lee', 'park'],
-        funcs: () => {
-          //console.log(this)
-          obj2.names.forEach(() => {
-            console.log(this);
-          });
-        }
-      }
-      obj2.funcs();
-    })
-    
-    // Arrow Function
-    let func = (a) => {
-      return a + 10;
+    function func2() {
+      console.log(name);
     }
-    
 
-    // 파라미터가 1개면 괄호 생략
-    let func = a => {
-      return a + 10;
+    func2();
+    
+    // 3. template Literals : ES6 부터 나온 문법, 문자열을 다르게 제작
+    // 장점 : 엔터키를 넣어서 사용가능, 중간에 변수를 넣을 때
+    let age = 30;
+    let name = 'Son'
+    let info = `My name is ${name}, my age ${age}`;
+
+    // console.log(info);
+    // HTML 을 변수안에 넣을 때 유용함 !
+
+    // 4. tagged literals
+    function 해체분석기(문자들, 변수들1, 변수들2) {
+      console.log(문자들[0]);
+      console.log(문자들[1]);
+      console.log(변수들1);
+      console.log(변수들2);
     }
+
+    해체분석기`My name is ${name}, my age ${age}`;
     
-    // 명령어가 1줄이면 중괄호, return ㅏ생략가능
-    let func = a => a + 10;
-    console.log(func(5));
+    let pants = 0;
+    let socks = 40;
     
-    // 일반 콜백함수
-    [1, 2, 3, 4].forEach(function (a) {
-      console.log(a);
-    });
-    
-    // Arrow Fuction
-    [1, 2, 3, 4].forEach(a => console.log(a));
-    
-    document.getElementById('btn').addEventListener('click', (e) => {
-      // console.log(this);
-      // 오브젝트 내부 함수에서 콜백함수를 Arrow 문법을 사용하면 e.currentTarget 처럼 나오지만
-      // 여기서는 this를 사용하면 window 출력
-      console.log(e.currentTarget);
-    })
-    
-    let obj = {
-      func: () => {
-        console.log(this); // 바깥의 this 를 상속받아 사용(현재는 window)
+    function 해체분석기(문자열, 변수1, 변수2) {
+      if (변수1 == 0) {
+        변수2 = 100;
+        console.log('바지안팔아요 양말 ' + 변수2);
+      } else {
+        console.log(문자열[0] + 변수1 + '개, ' + 문자열[1] + 변수2 + '개');
       }
     }
-    obj.func();
-   
-
-    // Test 1
+    
+    // Spread Operator
+    // 1. List에서 내용을 추출할 때 사용 : 대괄호를 제거하고 내용만 출력
+    let array = ['hello', 'wolrd'];
+    console.log(...array);
+    
+    // 일반 문자열을 출력해도 한개씩 분리해서 출력
+    let word = 'hello';
+    console.log(...word)
+    
+    // list를 합칠 수 있다.
+    let array1 = [1, 2, 3];
+    let array2 = [4, 5];
+    
+    let array3 = [...array1, ...array2];
+    console.log(array3);
+    
+    // 2. 깊은복사(Deep Copy) : 같은 메모리 공유
+    let a = [1, 2, 3];
+    let b = a;
+    console.log(a === b);
+    
+    // 얕은복사
+    let c = [1, 2, 3];
+    let d = [...c];
+    
+    console.log(c === d);
+    
+    // 3. Object 를 합칠 수 있다.    
+    let obj1 = { a: 1, b: 2 };
+    let obj2 = { ...obj1, c: 3 };
+    console.log(obj2);
+    
+    // 4. 함수 파라미터에 사용
+    function plus(a, b, c) {
+      console.log(a + b + c);
+    }
+    
+    let numArr = [10, 20, 30];
+    plus(1, 2, 3);
+    plus(...numArr);
+    
+    // 5. apply , call
     let person = {
-      name: "sonny",
-      sayHi: function () {
-        console.log('안녕 나는 ' + this.name);
+      인사: function () {
+        console.log(this.name + '안녕');
       }
     }
-    person.sayHi();
+    
+    let person2 = {
+      name: 'Kim'
+    }
+    
+    person.인사.apply(person2);
+    */
 
-    // Test 2
-    let datas = {
-      data: [1, 2, 3, 4, 5]
-    };
-
-    datas.total = function () {
-      let total = 0;
-      this.data.forEach(d => total += d);
-      console.log(total);
+    function plus(a, b, c) {
+      console.log(a + b + c);
     }
 
-    datas.total();
-
-    // Test 3
-
-    document.getElementById('btn').addEventListener('click', function () {
-      setTimeout(() => { console.log(this.innerHTML) }, 1000);
-    });
-    */
+    let numArr = [10, 20, 30];
+    plus(1, 2, 3);
+    plus(...numArr);
   </script>
 </body>
 

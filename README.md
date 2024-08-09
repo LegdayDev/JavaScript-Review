@@ -5,3 +5,6 @@
 > 2. JS 기초문법 
 > 3. this 키워드
 > 4. Arrow function
+
+### [DAY 02](/md/day02.md)
+> 
