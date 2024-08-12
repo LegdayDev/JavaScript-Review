@@ -141,7 +141,6 @@
     }
     
     person.인사.apply(person2);
-    */
 
     function plus(a, b, c) {
       console.log(a + b + c);
@@ -150,6 +149,322 @@
     let numArr = [10, 20, 30];
     plus(1, 2, 3);
     plus(...numArr);
+    
+    // ES6 Function
+    function add(a, b) {
+      console.log(a + b);
+    }
+    
+    add(1); // 함수 파라미터 1개만 입력해도 에러는 안나온다 -> NaN 출력
+    
+    // Default 파라미터
+    function defaultAdd(a, b = 10) {
+      console.log(a + b);
+    }
+    
+    // 함수의 argumnets(파라미터)
+    function add(a, b, c) {
+      for (let i = 0; i < arguments.length; i++) {
+        console.log(arguments[i]);
+      }
+    }
+    
+    // Rest 파라미터 : arguments 는 옛문법이다.
+    // arguments 는 모든 파라미터를 조작하기 때문에 몇몇 파라미터만 건들고 싶을 때는 좋지않은 문법이다.
+    
+    function add(a, b, ...parameters) { // ... 은 뒤에 오는 파라미터를 Array 로 감싼다는 것을 의미.
+    parameters.forEach(d => console.log(d));
+
+    }
+    add(1, 2, 3, 4); // 1,2 는 a,b에 매핑되고 뒤에 3,4를 rest 파라미터기 때문에 3,4만 출력
+
+    // rest파라미터는 가장 마지막에 써야한다.
+    
+    // Test 1 : ['김','밥',1,2,3]
+    // Test 2 : [[1,2,3],o]
+    // Test 3 : 9
+    // Test 4 : 15
+    // Test 5 : ...datas, console.log(rest);
+    // Test 6 : Math.max(...param)
+    // Test 7 : 
+    function 정렬(str) {
+      let result = [...str].sort().join('');
+      console.log(result);
+    }
+    
+    정렬('bear');
+    
+    // Test 8
+    function wordCount(str) {
+      let result = {};
+      [...str].forEach(data => {
+        if (result[data] >= 1) {
+          result[data]++;
+        } else {
+          result[data] = 1;
+      }
+    })
+    console.log(result);
+  }
+  
+  wordCount('aa');
+  
+  
+  let name1 = { name: 'kim' }; // Reference Data Type : Object , Array 
+  console.log(name1);
+  
+  let name2 = name1;
+  name2.name = 'son';
+  console.log(name2);
+  let names = { name: 'kim' };
+  
+  function objectChange(obj) {
+    obj = { name: 'son' };
+  }
+  
+  objectChange(names);
+  console.log(names);
+  
+  // constructor 문법
+  function Student(name, age) {
+    this.name = name;
+    this.age = age;
+    this.sayHi = function () {
+      console.log('안녕하세요 ' + this.name + ' 입니다.');
+    }
+  }
+  
+  let s1 = new Student('kim', 15);
+  let s2 = new Student('son', 16);
+  let s3 = new Student('park', 17);
+  
+  s1.sayHi();
+  s2.sayHi();
+  s3.sayHi();
+  
+  // prototype : 상속의 또다른 문법
+  
+  function Student(name, age) {
+    this.name = name;
+    this.age = age;
+    this.sayHi = function () {
+      console.log('안녕하세요 ' + this.name + ' 입니다.');
+    }
+  }
+  
+  Student.prototype.gender = 'male';
+  
+  let s1 = new Student('Park', 15);
+  let s2 = new Student('Son', 12);
+  
+  console.log(s1.gender);
+  
+  // Test 1
+  function Students(name, age) {
+    this.name = name;
+      this.age = age;
+      this.sayHi = function () {
+        console.log(`안녕 나는 ${this.name}이야`);
+      }
+    }
+    let 학생1 = new Students('Kim', 20);
+    let 학생2 = new Students('Park', 21);
+    let 학생3 = new Students('Lee', 22);
+    
+    console.log(학생1);
+    console.log(학생2);
+    console.log(학생3);
+    
+    학생1.sayHi();
+    // Test 2 : Kim
+    // Test 3
+    Array.prototype.remove3 = function () {
+      for (let i = 0; i < this.length; i++) {
+        if (this[i] === 3) {
+          this.splice(i, 1);
+        }
+      }
+    };
+    let arr = [1, 2, 3];
+    arr.remove3();
+    
+    console.log(arr);
+
+    // ES5 상속
+    let parent = {
+      name: 'Kim', age: 50, sayHi: function () {
+        console.log(`안녕하세요 ${this.name} 입니다. 저는 ${this.age}살 입니다.`);
+      }
+    };
+    
+    let child = Object.create(parent);
+    
+    console.log(child);
+    console.log(child.name); // 상속받음
+    console.log(child.age); // 상속받음
+    child.sayHi(); // 상속받음
+    
+    // ES6 상속
+    class Parent {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        // 자식만 갖고있는 함수는 여기다 작성
+      }
+      sayHi() { // 부모가 함수를 가진다.
+      console.log(`안녕하세요 저는 ${this.name}이고, 나이는 ${this.age}살 입니다.`);
+    }
+  };
+  
+  let child = new Parent('Ronaldo', 38);
+  
+  console.log(child);
+  
+  child.__proto__.sayHi();
+  class 할아버지 {
+    constructor(name) {
+      this.성 = 'Kim';
+      this.이름 = name;
+    }
+  }
+  
+  let 할아버지1 = new 할아버지('일성');
+  
+  console.log(할아버지1);
+
+  class 아버지 extends 할아버지 {
+    constructor(name) {
+      super(name);
+      this.나이 = 50;
+    }
+  }
+  
+  let 아버지1 = new 아버지('정일');
+  console.log(아버지1);
+  
+  // 기존의 필드값을 건드는 함수 : ES5 이전
+  let person = {
+    name: 'Park',
+    age: 30,
+    nextAge() {
+      return this.age + 1;
+    },
+    setAge(age) {
+      this.age = age;
+    }
+  }
+  
+  console.log(person.nextAge());
+  person.setAge(22);
+  console.log(person.age);
+  let person = {
+    name: 'Park',
+      age: 30,
+      get nextAge() {
+        return this.age + 1;
+      },
+      set setAge(age) {
+        this.age = age;
+      }
+    }
+    console.log(person.nextAge);
+    person.setAge = 30;
+    console.log(person.age);
+    
+    
+    class 사람 {
+      constructor() {
+        this.name = 'Park';
+        this.age = 20;
+      }
+      get nextAge() {
+        return this.age + 1;
+      }
+      set setAge(age) {
+        this.age = age;
+      }
+    }
+    
+    let 사람1 = new 사람();
+    console.log(사람1.nextAge);
+    console.log(사람1);
+    
+    사람1.setAge = 40;
+    console.log(사람1);
+    
+    // Test 1
+    class Dog {
+      constructor(type, color) {
+        this.type = type;
+        this.color = color;
+      }
+    }
+    let dog1 = new Dog('말티즈', 'white');
+    let dog2 = new Dog('진돗개', 'brown');
+    // Test 2
+    class Cat {
+      constructor(type, color, age) {
+        this.type = type;
+        this.color = color;
+        this.age = age;
+      }
+      
+    }
+    let cat1 = new Cat('코숏', 'white', 5);
+    let cat2 = new Cat('러시안블루', 'brown', 2);
+    
+    // Test 3
+    cat1.한살먹기 = function () {
+      this.age = this.age + 1;
+    };
+    cat1.한살먹기();
+    // console.log(cat1.age);
+    // dog1.한살먹기(); -> TypeError: ~~ is not a function
+    
+    // Test 4
+    class Unit {
+      constructor() {
+        this.attack = 5;
+        this.hp = 100;
+      }
+      get battlePoint() {
+        return this.attack + this.hp;
+      }
+      set heal(addHp) {
+        this.hp = this.hp + addHp;
+      }
+    }
+    let unit = new Unit();
+    // console.log(unit.battlePoint);
+    unit.heal = 50;
+    // console.log(unit);
+    
+    // Test 5
+    let Data = {
+      odd: [],
+      even: [],
+      setter: function (...rest) {
+        rest.forEach(data => {
+          if (data % 2 == 0) {
+            this.even.push(data);
+          } else {
+            this.odd.push(data);
+        }
+      })
+    },
+    get getter() {
+      return [...this.even, ...this.odd].sort(function (a, b) {
+        return a - b; // 숫자정렬
+      });
+    }
+  }
+  
+  let data = Object.create(Data);
+  
+  data.setter(22, 53, 12, 24, 5, 46, 1, 100, 2, 3);
+  console.log(data);
+  console.log(data.getter);
+  */
   </script>
 </body>
 
