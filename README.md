@@ -19,3 +19,10 @@
 > 5. ES5 문법으로 상속 구현
 
 ### [DAY 04](/md/day04.md)
+> 1. Destructuring 문법
+> 2. import / export
+> 3. 브라우저 동작원리
+> 4. 동기/비동기 콜백함수
+> 5. async / await
+> 6. Map, Set 자료형
+> 7. shadow DOM
