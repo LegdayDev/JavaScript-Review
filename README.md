@@ -17,3 +17,5 @@
 > 3. constructor(상속)
 > 4. prototype
 > 5. ES5 문법으로 상속 구현
+
+### [DAY 04](/md/day04.md)

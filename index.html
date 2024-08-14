@@ -6,7 +6,19 @@
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <title>JavaScript 학습</title>
+  <!-- <img id="test" src="https://codingapple1.github.io/kona.jpg"> -->
+  <div id="mordor"></div>
+  <custom-input></custom-input>
+  <template id="template1">
+    <label>이메일을 입력해라</label><input>
+    <style>
+      label {
+        color: red
+      }
+    </style>
+  </template>
 </head>
 
 <body>
@@ -464,7 +476,279 @@
   data.setter(22, 53, 12, 24, 5, 46, 1, 100, 2, 3);
   console.log(data);
   console.log(data.getter);
-  */
+  
+  // List
+    let arr = [2, 3, 4];
+    
+    // let a = arr[0];
+    // let b = arr[1];
+    // let c = arr[2];
+    
+    let [a, b, c] = arr;
+    
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    
+    let [d, e, f = 10] = [2, 3]; // 선언만 하고 할당을 안하면 undefined
+    console.log(d);
+    console.log(e);
+    console.log(f);
+    
+    // Object
+    let obj = { name: 'Kim', age: 30 };
+    // let name = obj.name;
+    // let age = obj.age;
+    
+    let { name, age } = obj; // 변수명과 key명을 맞춰줘야함.
+    console.log(name);
+    console.log(age);
+    let name = 'Kim';
+    let age = 30;
+    
+    // let obj = { name: name, age: age };
+    let obj = { name, age }; // 변수명이 Key명으로 매칭이 된다.
+    console.log(obj);
+    
+    // Parameters
+    let obj = { name: 'kim', age: 30 };
+    
+    // function func(param) {
+      //   console.log(param);
+      // }
+      function func({ name, age }) {
+        console.log(name);
+        console.log(age);
+      }
+      
+      func(obj);
+      
+      let obj = { name: 'Kim', age: 30 };
+      // let name = obj.name;
+      // let age = obj.age;
+      
+      let { name, age } = obj; // 변수명과 key명을 맞춰줘야함.
+      console.log(name);
+      console.log(age);
+      
+      // 동기(Synchronous)처리
+      console.log(1);
+      console.log(2);
+      console.log(3);
+      
+      // 비동기(Asynchronous)처리
+      console.log(1);
+      setTimeout(() => { }, 1000);
+      console.log(2) 
+      console.log(3);
+
+      // Web API 덕분에 비동기식 처리가 가능
+      
+      // 1초 있다가 코드를 실행시키는 동기식으로 처리하고 싶으면 콜백함수를 쓴다.
+      console.log(1);
+      setTimeout(() => { console.log(2) }, 1000);
+      // 콜백함수 : js를 순차적으로 실행
+      function func1(func) {
+      console.log('func1 실행');
+      func();
+    }
+    function func2() {
+      console.log('func2 실행');
+    }
+    
+    // 콜백함수는 계속 중첩되면 코드 가독성이 안좋다.
+    func1(func);
+    
+    // 프로미스 문법
+    let promise = new Promise(function (resolve, reject) {
+      resolve(); // 반드시 성공
+      reject(); //반드시 실패
+    });
+    // Promise : then(성공) , catch(실패) , finally
+    promise.then(function () {
+      
+  })
+  
+  
+  let promise = new Promise(function (resolve, reject) {
+    let hard = 1 + 1;
+    // resolve(hard);
+    reject("비상");
+  });
+  
+  promise.then(function (result) {
+    console.log("성공 ㅋㅋ 답 : " + result);
+  }).catch(function (error) {
+    console.log("실패 ㅋㅋ 에러 : " + error);
+  })
+  
+  // 프로미스 상태 : 성공(resolved) , 판정중(pending) , 실패(rejected)
+  
+  // Test 1
+  let promise = new Promise(function (resolve, reject) {
+    document.getElementById("test").addEventListener("load", () => {
+      resolve();
+    });
+
+    document.getElementById("test").addEventListener("error", () => {
+      reject();
+    });
+  });
+  
+    promise.then(function () {
+      alert("성공");
+    }).catch(function () {
+      alert("실패");
+    })
+    
+    // Test 2
+    $.ajax({
+      url: 'https://codingapple1.github.io/hello.tx',
+      type: 'get'
+    }).done(res => { alert(res) }).fail(err => { alert(err) });
+    
+    
+    // async/await: ES8 이후에 나온문법, Promise 개선(성공만 판정가능)
+    
+    async function add() {
+      let promise = new Promise(function (resolve, reject) {
+        let hard = 1 + 1;
+        // resolve(hard);
+        reject(100);
+      });
+      
+      // promise.then(function () {
+        //   console.log("성공했어요");
+        // })
+        try {
+          let result = await promise; // awit : async 함수 내부에서만 사용가능, promise 가 해결될 때 까지 기다린다.
+          console.log(result);
+        } catch {
+          console.log('실패');
+        }
+      }
+      
+      add();
+      
+      async function btnClick() {
+        let promise = new Promise(function (resolve, reject) {
+          document.querySelector(".btn-click").addEventListener("click", function () {
+            resolve('클릭성공');
+          });
+        });
+        
+        try {
+          let result = await promise;
+          console.log(result);
+      } catch {
+        console.log("클릭실패!");
+      }
+    }
+    btnClick();
+    
+    // Map : 자료의 연관성을 표현하기 위해 쓰는 자료형, key=>alue 형식
+    let person = new Map();
+    person.set('name', 'Kim'); // set(key,value) 로 저장, key는 어떤 자료형이든 다 가능하다.
+    person.set('age', 20);
+    console.log(person);
+    
+    let age = person.get('age'); // get(key) : key에 맞는 value를 출력
+    console.log(age);
+    
+    console.log(person.size); // key 갯수 출력
+    
+    // 반복문
+    for (let key of person.keys()) {
+      console.log(key);
+    }
+    
+    for (let value of person.values()) {
+      console.log(value);
+    }
+    let person = new Map([
+      ['name', 'Kim'],
+      ['age', 20]
+    ]);
+    
+    console.log(person);
+    
+    // Set : 중복을 허용하지 않는 Array
+    
+    var 출석부 = new Set(['john', 'tom', 'andy', 'tom']);
+    console.log(출석부);
+    
+    출석부.add('ronaldo');
+    console.log(출석부);
+    
+    출석부.delete('tom');
+    console.log(출석부);
+    
+    // Array -> Set 변환
+    let 출석부 = ['john', 'tom', 'andy', 'tom'];
+    
+    let 출석부2 = new Set(['john', 'tom', 'andy', 'tom']);
+    console.log(출석부2);
+    
+    출석부 = [...출석부2];
+    console.log(출석부);
+    
+    var 출석부 = new Set(['john', 'tom', 'andy', 'tom']);
+    console.log(출석부);
+    
+    출석부.add('ronaldo');
+    console.log(출석부);
+    
+    출석부.delete('tom');
+    console.log(출석부);
+    document.querySelector("#mordor").attachShadow({ mode: 'open' });
+    document.querySelector("#mordor").shadowRoot.innerHTML =
+    `<p>안녕하세용</p>`
+    
+    class 클래스 extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML =
+        `<label>이메일</label><input>
+        <style>label {color:red}</style>`;
+      }
+    }
+    customElements.define("custom-input", 클래스);
+    
+    class 클래스 extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML =
+        `<label>이메일</label><input>
+        <style>label {color:red}</style>`;
+      }
+    }
+    customElements.define("custom-input", 클래스);
+    */
+
+    class 클래스 extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.append(template1.content.cloneNode(true));
+      }
+    }
+    customElements.define("custom-input", 클래스);
+
+
+  </script>
+  <script type="module">
+    /*
+    // ES6 import : import 별칭 from '경로'
+    import * as lib from '/library.js'
+    import importA from '/library.js' // Default 는 별칭을 통해서 받아온다.
+    import { a, b } from '/library.js' // Default 가 아니면 {}로 묶어서 변수명을 갖고온다.
+    console.log("export : " + a);
+    console.log("export : " + b);
+    console.log("export default : " + importA);
+
+    console.log(lib.a);
+    console.log(lib.b);
+    console.log(lib.default); // default 는 default를 통해 가져온다.
+    */
+
   </script>
 </body>
 
